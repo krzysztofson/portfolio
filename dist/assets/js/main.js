@@ -1,15 +1,9 @@
-// reCAPTCHA v3 Form submission with better error handling
+// reCAPTCHA v3 Form submission
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("form");
   const submitBtn = document.getElementById("submit-btn");
 
-  console.log("Form loaded, checking reCAPTCHA...");
-
-  // Check if reCAPTCHA loaded properly
-  if (typeof grecaptcha === "undefined") {
-    console.error("reCAPTCHA not loaded!");
-    return;
-  }
+  console.log("Form loaded, initializing reCAPTCHA v3...");
 
   if (form && submitBtn) {
     form.addEventListener("submit", function (e) {
@@ -19,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       submitBtn.disabled = true;
       submitBtn.textContent = "Verifying...";
 
-      console.log("Starting reCAPTCHA verification...");
+      console.log("Starting reCAPTCHA v3 verification...");
 
       // Execute reCAPTCHA v3
       grecaptcha.ready(function () {
@@ -27,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         grecaptcha
           .execute("6Lf44bIrAAAAAIJrQpMVCfwYoi7r91MrWke92-zw", {
-            action: "contact_form",
+            action: "submit_contact_form",
           })
           .then(function (token) {
             console.log(
@@ -36,11 +30,14 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
             // Add the token to the form
-            const tokenInput = document.createElement("input");
-            tokenInput.type = "hidden";
-            tokenInput.name = "g-recaptcha-response";
+            let tokenInput = form.querySelector('input[name="g-recaptcha-response"]');
+            if (!tokenInput) {
+              tokenInput = document.createElement("input");
+              tokenInput.type = "hidden";
+              tokenInput.name = "g-recaptcha-response";
+              form.appendChild(tokenInput);
+            }
             tokenInput.value = token;
-            form.appendChild(tokenInput);
 
             // Submit the form
             console.log("Submitting form...");
@@ -48,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
           })
           .catch(function (error) {
             console.error("reCAPTCHA error:", error);
-            alert("reCAPTCHA verification failed: " + error.message);
+            alert("reCAPTCHA verification failed. Please try again.");
 
             // Re-enable submit button
             submitBtn.disabled = false;
