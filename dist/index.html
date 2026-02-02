@@ -3,218 +3,1589 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./assets/css/main.css" />
-    <title>Krzysztof Dąbrowski</title>
+    <title>Krzysztof Dąbrowski — Digital Craftsman</title>
     <meta
       name="description"
-      content="Krzysztof Dąbrowski - Engineering creative, interactive web experiences specialising in UI Development, SEO and Performance optimisation for various marketing and developer projects for companies all around the world."
+      content="Krzysztof Dąbrowski — Engineering high-performance digital experiences. Specializing in conversion optimization, performance engineering, automation systems, and AI-powered solutions."
     />
 
+    <!-- Fonts: Playfair Display (editorial luxury) + DM Sans (modern clarity) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap"
       rel="stylesheet"
     />
+
     <script src="https://www.google.com/recaptcha/api.js?render=6Lf44bIrAAAAAIJrQpMVCfwYoi7r91MrWke92-zw"></script>
+
+    <style>
+      :root {
+        --color-bg-primary: #0a0a0a;
+        --color-bg-secondary: #0f0f0f;
+        --color-bg-tertiary: #171717;
+        --color-bg-card: #121212;
+        --color-accent: #c9a227;
+        --color-accent-light: #dbb84d;
+        --color-accent-muted: rgba(201, 162, 39, 0.15);
+        --color-text-primary: #fafafa;
+        --color-text-secondary: #a3a3a3;
+        --color-text-muted: #525252;
+        --color-border: rgba(255, 255, 255, 0.06);
+        --color-border-light: rgba(255, 255, 255, 0.12);
+        --font-display: 'Playfair Display', Georgia, serif;
+        --font-body: 'DM Sans', system-ui, sans-serif;
+        --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-primary);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Subtle grain texture */
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: 0.025;
+        z-index: 9999;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      }
+
+      ::selection {
+        background-color: var(--color-accent);
+        color: var(--color-bg-primary);
+      }
+
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: var(--color-bg-primary); }
+      ::-webkit-scrollbar-thumb { background: var(--color-bg-tertiary); border-radius: 3px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+      img { max-width: 100%; height: auto; display: block; }
+      a { color: inherit; text-decoration: none; }
+
+      .container {
+        width: 100%;
+        max-width: 1320px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
+
+      @media (min-width: 768px) {
+        .container { padding: 0 48px; }
+      }
+
+      /* Navigation */
+      .nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 0;
+        background: linear-gradient(to bottom, var(--color-bg-primary), transparent);
+        transition: all 0.4s var(--ease-out-expo);
+      }
+
+      .nav.scrolled {
+        background: rgba(10, 10, 10, 0.92);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.375rem;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        transition: color 0.3s ease;
+      }
+
+      .nav-logo:hover { color: var(--color-accent); }
+
+      .nav-links {
+        display: none;
+        gap: 48px;
+        list-style: none;
+      }
+
+      @media (min-width: 768px) {
+        .nav-links { display: flex; }
+      }
+
+      .nav-link {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        position: relative;
+        transition: color 0.3s ease;
+      }
+
+      .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -6px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--color-accent);
+        transition: width 0.4s var(--ease-out-expo);
+      }
+
+      .nav-link:hover { color: var(--color-text-primary); }
+      .nav-link:hover::after { width: 100%; }
+
+      /* Hero */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        padding: 140px 0 100px;
+        overflow: hidden;
+      }
+
+      .hero-bg {
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 70%;
+        height: 140%;
+        background: radial-gradient(ellipse at center, var(--color-accent-muted) 0%, transparent 60%);
+        pointer-events: none;
+        opacity: 0;
+        animation: fadeIn 2s var(--ease-out-expo) 0.3s forwards;
+      }
+
+      .hero-content { position: relative; z-index: 1; }
+
+      .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin-bottom: 40px;
+        opacity: 0;
+        transform: translateY(24px);
+        animation: slideUp 0.8s var(--ease-out-expo) 0.2s forwards;
+      }
+
+      .hero-label::before {
+        content: '';
+        width: 48px;
+        height: 1px;
+        background: var(--color-accent);
+      }
+
+      .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 9vw, 7.5rem);
+        font-weight: 400;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin-bottom: 32px;
+        opacity: 0;
+        transform: translateY(40px);
+        animation: slideUp 1s var(--ease-out-expo) 0.4s forwards;
+      }
+
+      .hero-title em {
+        font-style: italic;
+        color: var(--color-accent);
+      }
+
+      .hero-description {
+        font-size: clamp(1rem, 1.5vw, 1.25rem);
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--color-text-secondary);
+        max-width: 560px;
+        margin-bottom: 48px;
+        opacity: 0;
+        transform: translateY(32px);
+        animation: slideUp 0.8s var(--ease-out-expo) 0.6s forwards;
+      }
+
+      .hero-cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        opacity: 0;
+        transform: translateY(24px);
+        animation: slideUp 0.8s var(--ease-out-expo) 0.8s forwards;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 18px 36px;
+        font-family: var(--font-body);
+        font-size: 0.8125rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        transition: all 0.4s var(--ease-out-expo);
+      }
+
+      .btn-primary {
+        background: var(--color-accent);
+        color: var(--color-bg-primary);
+      }
+
+      .btn-primary:hover {
+        background: var(--color-accent-light);
+        transform: translateY(-3px);
+        box-shadow: 0 24px 48px -12px rgba(201, 162, 39, 0.35);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--color-text-primary);
+        border: 1px solid var(--color-border-light);
+      }
+
+      .btn-secondary:hover {
+        border-color: var(--color-accent);
+        color: var(--color-accent);
+      }
+
+      .btn-icon {
+        transition: transform 0.3s var(--ease-out-expo);
+      }
+
+      .btn:hover .btn-icon { transform: translateX(4px); }
+
+      /* Stats */
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        margin-top: 100px;
+        padding-top: 48px;
+        border-top: 1px solid var(--color-border);
+        opacity: 0;
+        animation: fadeIn 1s var(--ease-out-expo) 1s forwards;
+      }
+
+      @media (min-width: 768px) {
+        .hero-stats { grid-template-columns: repeat(4, 1fr); }
+      }
+
+      .stat-number {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 500;
+        color: var(--color-text-primary);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .stat-number span { color: var(--color-accent); }
+
+      .stat-label {
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--color-text-muted);
+      }
+
+      /* Sections */
+      .section {
+        padding: clamp(80px, 12vw, 140px) 0;
+        position: relative;
+      }
+
+      .section-header {
+        max-width: 720px;
+        margin-bottom: clamp(48px, 8vw, 80px);
+      }
+
+      .section-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin-bottom: 20px;
+      }
+
+      .section-label::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--color-accent);
+      }
+
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 4.5vw, 3.25rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+      }
+
+      .section-title em {
+        font-style: italic;
+        color: var(--color-accent);
+      }
+
+      .section-description {
+        font-size: 1.0625rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--color-text-secondary);
+        margin-top: 24px;
+      }
+
+      /* Expertise */
+      .expertise { background: var(--color-bg-secondary); }
+
+      .expertise-grid {
+        display: grid;
+        gap: 24px;
+      }
+
+      @media (min-width: 640px) {
+        .expertise-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (min-width: 1024px) {
+        .expertise-grid { grid-template-columns: repeat(4, 1fr); }
+      }
+
+      .expertise-card {
+        background: var(--color-bg-card);
+        border: 1px solid var(--color-border);
+        padding: 40px 32px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s var(--ease-out-expo);
+      }
+
+      .expertise-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.5s var(--ease-out-expo);
+      }
+
+      .expertise-card:hover {
+        border-color: var(--color-border-light);
+        transform: translateY(-6px);
+        box-shadow: 0 32px 64px -24px rgba(0, 0, 0, 0.5);
+      }
+
+      .expertise-card:hover::before { transform: scaleX(1); }
+
+      .expertise-icon {
+        width: 52px;
+        height: 52px;
+        margin-bottom: 28px;
+        color: var(--color-accent);
+      }
+
+      .expertise-title {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-bottom: 16px;
+        letter-spacing: -0.01em;
+      }
+
+      .expertise-desc {
+        font-size: 0.9375rem;
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--color-text-secondary);
+      }
+
+      /* CRO Section */
+      .cro-section { background: var(--color-bg-primary); }
+
+      .cro-content {
+        display: grid;
+        gap: 64px;
+        align-items: center;
+      }
+
+      @media (min-width: 1024px) {
+        .cro-content { grid-template-columns: 1fr 1fr; }
+      }
+
+      .cro-text h3 {
+        font-family: var(--font-display);
+        font-size: 1.625rem;
+        font-weight: 500;
+        margin-bottom: 24px;
+      }
+
+      .cro-text p {
+        font-size: 1rem;
+        font-weight: 300;
+        line-height: 1.85;
+        color: var(--color-text-secondary);
+        margin-bottom: 24px;
+      }
+
+      .cro-list {
+        list-style: none;
+        margin-top: 32px;
+      }
+
+      .cro-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--color-border);
+        font-size: 0.9375rem;
+        color: var(--color-text-secondary);
+      }
+
+      .cro-list li:last-child { border-bottom: none; }
+
+      .cro-list-icon {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+        color: var(--color-accent);
+        margin-top: 2px;
+      }
+
+      .cro-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .metric-card {
+        background: var(--color-bg-tertiary);
+        border: 1px solid var(--color-border);
+        padding: 32px 24px;
+        text-align: center;
+        transition: all 0.4s var(--ease-out-expo);
+      }
+
+      .metric-card:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-4px);
+      }
+
+      .metric-value {
+        font-family: var(--font-display);
+        font-size: 2.75rem;
+        font-weight: 500;
+        color: var(--color-accent);
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+
+      .metric-label {
+        font-size: 0.8125rem;
+        font-weight: 400;
+        color: var(--color-text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      /* AI Section */
+      .ai-section {
+        background: var(--color-bg-secondary);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .ai-section::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 800px;
+        height: 800px;
+        transform: translate(-50%, -50%);
+        background: radial-gradient(circle, var(--color-accent-muted) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .ai-grid {
+        display: grid;
+        gap: 32px;
+      }
+
+      @media (min-width: 768px) {
+        .ai-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      @media (min-width: 1024px) {
+        .ai-grid { grid-template-columns: repeat(3, 1fr); }
+      }
+
+      .ai-card {
+        background: rgba(18, 18, 18, 0.8);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border: 1px solid var(--color-border);
+        padding: 40px 32px;
+        position: relative;
+        transition: all 0.5s var(--ease-out-expo);
+      }
+
+      .ai-card:hover {
+        border-color: var(--color-accent);
+        transform: translateY(-8px);
+        box-shadow: 0 40px 80px -32px rgba(0, 0, 0, 0.6);
+      }
+
+      .ai-card-num {
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        font-family: var(--font-display);
+        font-size: 3.5rem;
+        font-weight: 400;
+        color: var(--color-border);
+        line-height: 1;
+        opacity: 0.5;
+      }
+
+      .ai-card-title {
+        font-family: var(--font-display);
+        font-size: 1.375rem;
+        font-weight: 500;
+        margin-bottom: 16px;
+        padding-right: 56px;
+      }
+
+      .ai-card-desc {
+        font-size: 0.9375rem;
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--color-text-secondary);
+        margin-bottom: 24px;
+      }
+
+      .ai-card-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .ai-tag {
+        padding: 6px 12px;
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        background: var(--color-bg-tertiary);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-secondary);
+      }
+
+      /* Projects */
+      .projects-section { background: var(--color-bg-primary); }
+
+      .projects-grid {
+        display: grid;
+        gap: 48px;
+      }
+
+      .project-card {
+        display: grid;
+        gap: 48px;
+        padding: 48px;
+        transition: all 0.5s var(--ease-out-expo);
+      }
+
+      @media (min-width: 768px) {
+        .project-card {
+          grid-template-columns: 1fr 1fr;
+          gap: 64px;
+          align-items: center;
+        }
+
+        .project-card:nth-child(even) { direction: rtl; }
+        .project-card:nth-child(even) > * { direction: ltr; }
+      }
+
+      .project-card:hover {
+        border-color: var(--color-border-light);
+        box-shadow: 0 48px 96px -48px rgba(0, 0, 0, 0.5);
+      }
+
+      .project-image {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 16/10;
+      }
+
+      .project-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s var(--ease-out-expo);
+      }
+
+      .project-card:hover .project-image img { transform: scale(1.05); }
+
+      .project-category {
+        font-size: 0.75rem;
+        font-weight: 500;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--color-accent);
+        margin-bottom: 16px;
+      }
+
+      .project-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 3vw, 2.25rem);
+        font-weight: 500;
+        margin-bottom: 16px;
+        letter-spacing: -0.01em;
+      }
+
+      .project-title a {
+        transition: color 0.3s ease;
+      }
+
+      .project-title a:hover { color: var(--color-accent); }
+
+      .project-desc {
+        font-size: 0.9375rem;
+        font-weight: 300;
+        line-height: 1.85;
+        color: var(--color-text-secondary);
+        margin-bottom: 24px;
+      }
+
+      .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .project-tag {
+        padding: 8px 16px;
+        font-size: 0.6875rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        border: 1px solid var(--color-border);
+        color: var(--color-text-muted);
+      }
+
+      /* Demos */
+      .demos-section {
+        padding: 80px 0;
+        background: var(--color-bg-secondary);
+      }
+
+      .demos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      @media (min-width: 768px) {
+        .demos-grid {
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+      }
+
+      .demo-item {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+
+      .demo-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s var(--ease-out-expo);
+      }
+
+      .demo-item:hover img { transform: scale(1.08); }
+
+      .demo-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(10, 10, 10, 0.9), transparent 60%);
+        display: flex;
+        align-items: flex-end;
+        padding: 20px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+
+      .demo-item:hover .demo-overlay { opacity: 1; }
+
+      .demo-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+
+      /* Testimonial */
+      .testimonial-section {
+        padding: clamp(100px, 16vw, 180px) 0;
+        background: var(--color-bg-primary);
+      }
+
+      .testimonial-content {
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .testimonial-quote {
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 400;
+        font-style: italic;
+        line-height: 1.6;
+        margin-bottom: 48px;
+      }
+
+      .testimonial-quote::before {
+        content: '"';
+        display: block;
+        font-size: 5rem;
+        line-height: 0.4;
+        color: var(--color-accent);
+        margin-bottom: 24px;
+      }
+
+      .testimonial-author {
+        font-size: 0.9375rem;
+        font-weight: 500;
+        margin-bottom: 4px;
+      }
+
+      .testimonial-role {
+        font-size: 0.8125rem;
+        color: var(--color-text-muted);
+      }
+
+      /* Contact */
+      .contact-section {
+        padding: clamp(80px, 12vw, 140px) 0 clamp(100px, 16vw, 180px);
+        background: var(--color-bg-secondary);
+      }
+
+      .contact-grid {
+        display: grid;
+        gap: 64px;
+      }
+
+      @media (min-width: 1024px) {
+        .contact-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 120px;
+        }
+      }
+
+      .contact-info h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2.25rem, 5vw, 3.5rem);
+        font-weight: 400;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        margin-bottom: 24px;
+      }
+
+      .contact-info h2 em {
+        font-style: italic;
+        color: var(--color-accent);
+      }
+
+      .contact-info p {
+        font-size: 1.0625rem;
+        font-weight: 300;
+        line-height: 1.8;
+        color: var(--color-text-secondary);
+        margin-bottom: 40px;
+        max-width: 420px;
+      }
+
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 0.9375rem;
+        color: var(--color-text-secondary);
+        transition: color 0.3s ease;
+      }
+
+      .contact-link:hover { color: var(--color-accent); }
+
+      .contact-link svg {
+        width: 20px;
+        height: 20px;
+        color: var(--color-accent);
+      }
+
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .form-group { position: relative; }
+
+      .form-label {
+        position: absolute;
+        top: 20px;
+        left: 0;
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+        pointer-events: none;
+        transition: all 0.3s var(--ease-out-expo);
+      }
+
+      .form-input {
+        width: 100%;
+        padding: 20px 0;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        color: var(--color-text-primary);
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid var(--color-border);
+        outline: none;
+        transition: border-color 0.3s ease;
+      }
+
+      .form-input:focus { border-color: var(--color-accent); }
+
+      .form-input:focus + .form-label,
+      .form-input:not(:placeholder-shown) + .form-label {
+        top: 0;
+        font-size: 0.75rem;
+        color: var(--color-accent);
+      }
+
+      .form-input::placeholder { color: transparent; }
+
+      textarea.form-input {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .form-submit {
+        align-self: flex-start;
+        margin-top: 16px;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 40px 0;
+        background: var(--color-bg-primary);
+        border-top: 1px solid var(--color-border);
+      }
+
+      .footer-inner {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        align-items: center;
+        text-align: center;
+      }
+
+      @media (min-width: 768px) {
+        .footer-inner {
+          flex-direction: row;
+          justify-content: space-between;
+          text-align: left;
+        }
+      }
+
+      .footer-copy {
+        font-size: 0.8125rem;
+        color: var(--color-text-muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 32px;
+      }
+
+      .footer-link {
+        font-size: 0.8125rem;
+        color: var(--color-text-muted);
+        transition: color 0.3s ease;
+      }
+
+      .footer-link:hover { color: var(--color-accent); }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(var(--slide-distance, 30px));
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(48px);
+        transition: all 0.9s var(--ease-out-expo);
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+      .reveal-delay-5 { transition-delay: 0.5s; }
+      .reveal-delay-6 { transition-delay: 0.6s; }
+
+      /* Page loader */
+      .loader {
+        position: fixed;
+        inset: 0;
+        background: var(--color-bg-primary);
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: opacity 0.6s ease, visibility 0.6s ease;
+      }
+
+      .loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      .loader-bar {
+        width: 160px;
+        height: 2px;
+        background: var(--color-border);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .loader-bar::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 40%;
+        background: var(--color-accent);
+        animation: loading 1s ease-in-out infinite;
+      }
+
+      @keyframes loading {
+        0% { left: -40%; }
+        100% { left: 100%; }
+      }
+    </style>
   </head>
 
-  <body class="font-main bg-stone-900 text-neutral-200">
-    <img src="assets/imgs/animation.svg" class="pt-8 md:pt-0" alt="bubbles" />
-    <header>
-      <div class="xl:grid xl:grid-cols-2">
-        <div class="flex items-center pl-4 pb-10">
-          <h1 class="text-6xl lg:text-7xl xl:text-9xl font-bold">
-            Krzysztof Dąbrowski
-          </h1>
+  <body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+      <div class="loader-bar"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+      <div class="container nav-inner">
+        <a href="#" class="nav-logo">Krzysztof Dąbrowski</a>
+        <ul class="nav-links">
+          <li><a href="#expertise" class="nav-link">Expertise</a></li>
+          <li><a href="#work" class="nav-link">Work</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="container hero-content">
+        <span class="hero-label">Digital Craftsman</span>
+        <h1 class="hero-title">
+          Engineering<br/>
+          <em>exceptional</em><br/>
+          experiences
+        </h1>
+        <p class="hero-description">
+          I build high-performance digital products that convert. Specializing in conversion optimization, performance engineering, intelligent automation, and AI-powered solutions for forward-thinking companies worldwide.
+        </p>
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">
+            View Work
+            <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
         </div>
-      </div>
-    </header>
 
-    <section>
-      <div class="xl:grid xl:grid-cols-2 px-4">
-        <h2 class="text-3xl lg:text-4xl font-[500] text-blue-200">
-          Engineering creative, interactive web experiences specialising in
-          <span class="text-neutral-200 underline"
-            >UI Development, SEO and Performance optimisation</span
-          >
-          for various marketing and developer projects for comapnies all around
-          the world.
-        </h2>
-      </div>
-    </section>
-
-    <section class="pt-24">
-      <div class="px-4">
-        <h2
-          class="max-w-6xl mx-auto pb-5 text-4xl lg:text-5xl font-[500] text-neutral-200"
-        >
-          Recent Projects:
-        </h2>
-        <div class="max-w-6xl p-6 md:p-12 mx-auto bg-zinc-800 rounded-3xl">
-          <div
-            class="md:grid md:grid-cols-2 md:items-center md:gap-8 space-y-5 md:space-y-0"
-          >
-            <img
-              class="rounded-lg"
-              src="assets/imgs/project-1.jpg"
-              alt="Project preview"
-            />
-            <div>
-              <a href="https://instapage.com/" target="_blank">
-                <h3 class="mb-2 text-4xl text-white">Instapage</h3>
-              </a>
-              <p class="font-light">
-                Instapage Enhancement: In the Instapage project, I focused on
-                creating a new design system, optimizing SEO, and enhancing
-                performance for the blog to drive better conversions. My role
-                involved implementing cutting-edge design principles and
-                technical SEO strategies, resulting in a significant uplift in
-                blog performance and user engagement. This project not only
-                boosted our online presence but also demonstrated my expertise
-                in balancing aesthetic design with functional excellence.
-              </p>
-            </div>
-            <div>
-              <a href="https://chat-craft.netlify.app/" target="_blank">
-                <h3 class="mb-2 text-4xl text-white">ChatCraft</h3>
-              </a>
-              <p class="font-light">
-                ChatCraft One-Page Website Creation: For the ChatCraft project,
-                my objective was to design and develop a one-page website that
-                showcases the unique functionalities of ChatCraft with a modern
-                and engaging design. I successfully captured the essence of
-                ChatCraft's innovative features in a user-friendly layout,
-                significantly enhancing the user experience and effectively
-                demonstrating the product's capabilities in a single,
-                streamlined page.
-              </p>
-            </div>
-            <img
-              class="rounded-lg"
-              src="assets/imgs/project-2.jpg"
-              alt="Project preview"
-            />
-            <img
-              class="rounded-lg"
-              src="assets/imgs/project-3.jpg"
-              alt="Project preview"
-            />
-            <div>
-              <a href="http://omduk.com" target="_blank">
-                <h3 class="mb-2 text-4xl text-white">OMDUK</h3>
-              </a>
-              <p class="font-light">
-                OMDUK Website Rebranding and Development: As the lead on the
-                OMDUK project, I spearheaded the development and design of a
-                new, user-friendly website aimed at rebranding our online
-                presence and showcasing our customer projects. Overcoming
-                challenges in design and functionality, the successful launch
-                led to enhanced customer engagement and highlighted our
-                commitment to innovative solutions. This project not only
-                improved our brand's visibility but also enriched my skills in
-                web development and client-focused design.
-              </p>
-            </div>
-            <div>
-              <a href="https://site.circlerfashion.com" target="_blank">
-                <h3 class="mb-2 text-4xl text-white">Circle Of Style</h3>
-              </a>
-              <p class="font-light">
-                Circle of Style Branding and UI Refresh: In the Circle of Style
-                project, I was entrusted with refreshing the branding and user
-                interface based on our client's design vision. My work involved
-                creatively translating client ideas into a visually appealing
-                and user-friendly interface, enhancing the overall brand appeal.
-                This project not only strengthened client relationships but also
-                showcased my ability to adapt and deliver client-centric design
-                solutions effectively.
-              </p>
-            </div>
-            <img
-              class="rounded-lg"
-              src="assets/imgs/project-4.jpg"
-              alt="Project preview"
-            />
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-number">10<span>+</span></div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">50<span>+</span></div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">35<span>%</span></div>
+            <div class="stat-label">Avg. Conversion Lift</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">2<span>x</span></div>
+            <div class="stat-label">Performance Gains</div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="pt-24">
-      <div class="px-4">
-        <div class="max-w-6xl mx-auto">
-          <h2 class="pb-5 text-4xl lg:text-5xl font-[500] text-neutral-200">
-            Other:
-          </h2>
-          <div
-            class="md:grid md:grid-cols-2 md:items-center md:gap-5 space-y-5 md:space-y-0"
-          >
-            <img
-              class="rounded-lg"
-              src="assets/imgs/demo-spa-salon.jpg"
-              alt="Demo image"
-            />
-            <img
-              class="rounded-lg"
-              src="assets/imgs/demo-lifestyle-blog.jpg"
-              alt="Demo image"
-            />
-            <img
-              class="rounded-lg"
-              src="assets/imgs/demo-consulting.jpg"
-              alt="Demo image"
-            />
-            <img
-              class="rounded-lg"
-              src="assets/imgs/demo-coming-soon.jpg"
-              alt="Demo image"
-            />
+    <!-- Expertise -->
+    <section class="section expertise" id="expertise">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">What I Do</span>
+          <h2 class="section-title">Crafting digital experiences that <em>perform</em></h2>
+          <p class="section-description">
+            From concept to deployment, I bring together strategic thinking and technical excellence to deliver measurable results.
+          </p>
+        </div>
+
+        <div class="expertise-grid">
+          <div class="expertise-card reveal reveal-delay-1">
+            <svg class="expertise-icon" viewBox="0 0 48 48" fill="none">
+              <path d="M24 4L6 14V34L24 44L42 34V14L24 4Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M24 22V44" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M42 14L24 24L6 14" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="24" cy="24" r="3" fill="currentColor"/>
+            </svg>
+            <h3 class="expertise-title">UI Development</h3>
+            <p class="expertise-desc">Pixel-perfect interfaces with modern frameworks. Design systems, component libraries, and responsive experiences that engage and delight.</p>
+          </div>
+
+          <div class="expertise-card reveal reveal-delay-2">
+            <svg class="expertise-icon" viewBox="0 0 48 48" fill="none">
+              <path d="M6 38L14 24L22 30L32 16L42 24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="14" cy="24" r="2.5" fill="currentColor"/>
+              <circle cx="22" cy="30" r="2.5" fill="currentColor"/>
+              <circle cx="32" cy="16" r="2.5" fill="currentColor"/>
+              <circle cx="42" cy="24" r="2.5" fill="currentColor"/>
+            </svg>
+            <h3 class="expertise-title">Conversion Optimization</h3>
+            <p class="expertise-desc">Data-driven CRO strategies that turn visitors into customers. A/B testing, user research, and funnel optimization with measurable growth.</p>
+          </div>
+
+          <div class="expertise-card reveal reveal-delay-3">
+            <svg class="expertise-icon" viewBox="0 0 48 48" fill="none">
+              <path d="M24 4V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M24 36V44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M4 24H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M36 24H44" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="24" cy="24" r="10" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M18 24L22 28L30 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <h3 class="expertise-title">Performance Engineering</h3>
+            <p class="expertise-desc">Speed matters. Core Web Vitals optimization, code splitting, lazy loading, and infrastructure tuning for lightning-fast experiences.</p>
+          </div>
+
+          <div class="expertise-card reveal reveal-delay-4">
+            <svg class="expertise-icon" viewBox="0 0 48 48" fill="none">
+              <path d="M12 20C12 13.373 17.373 8 24 8C30.627 8 36 13.373 36 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M8 28H40" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M12 36H36" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M16 44H32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="24" cy="18" r="3" fill="currentColor"/>
+            </svg>
+            <h3 class="expertise-title">AI & Automation</h3>
+            <p class="expertise-desc">Intelligent systems that scale. Custom AI integrations, workflow automation, chatbots, and machine learning solutions for modern businesses.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="py-24">
-      <div class="max-w-6xl mx-auto">
-        <div class="px-4">
-          <h2 class="pb-5 text-4xl lg:text-5xl font-[500] text-neutral-200">
-            Say Hello
-          </h2>
+    <!-- CRO Deep Dive -->
+    <section class="section cro-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Conversion Optimization</span>
+          <h2 class="section-title">Turning traffic into <em>revenue</em></h2>
+        </div>
+
+        <div class="cro-content">
+          <div class="cro-text reveal">
+            <h3>Strategic Optimization, Measurable Results</h3>
+            <p>
+              Every pixel serves a purpose. I combine behavioral analytics, user research, and systematic A/B testing to identify and remove friction points across your entire conversion funnel.
+            </p>
+            <p>
+              My approach focuses on understanding user intent and aligning every element—copy, design, UX—toward your business goals. The result? Sustainable improvements that compound over time.
+            </p>
+            <ul class="cro-list">
+              <li>
+                <svg class="cro-list-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Heatmap analysis and session recordings to understand real user behavior
+              </li>
+              <li>
+                <svg class="cro-list-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Hypothesis-driven A/B and multivariate testing with statistical rigor
+              </li>
+              <li>
+                <svg class="cro-list-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Landing page optimization focused on intent and action
+              </li>
+              <li>
+                <svg class="cro-list-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Checkout and form optimization to reduce abandonment
+              </li>
+            </ul>
+          </div>
+
+          <div class="cro-metrics reveal reveal-delay-2">
+            <div class="metric-card">
+              <div class="metric-value">+47%</div>
+              <div class="metric-label">Landing Page CVR</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">-23%</div>
+              <div class="metric-label">Cart Abandonment</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">+62%</div>
+              <div class="metric-label">Lead Quality</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-value">3.2x</div>
+              <div class="metric-label">ROI on Testing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI & Automation -->
+    <section class="section ai-section">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Automation & AI</span>
+          <h2 class="section-title">Intelligent systems that <em>scale</em></h2>
+          <p class="section-description">
+            Harnessing AI and smart automation to build tools that work tirelessly, scale infinitely, and deliver consistent results.
+          </p>
+        </div>
+
+        <div class="ai-grid">
+          <div class="ai-card reveal reveal-delay-1">
+            <span class="ai-card-num">01</span>
+            <h3 class="ai-card-title">Workflow Automation</h3>
+            <p class="ai-card-desc">Eliminate repetitive tasks and human error. I design automated workflows that connect your tools, streamline operations, and free your team for high-value work.</p>
+            <div class="ai-card-tags">
+              <span class="ai-tag">Zapier</span>
+              <span class="ai-tag">Make</span>
+              <span class="ai-tag">n8n</span>
+              <span class="ai-tag">Custom APIs</span>
+            </div>
+          </div>
+
+          <div class="ai-card reveal reveal-delay-2">
+            <span class="ai-card-num">02</span>
+            <h3 class="ai-card-title">AI Integration</h3>
+            <p class="ai-card-desc">Harness modern AI within your existing systems. From GPT-powered content generation to intelligent document processing, I build AI solutions that solve real problems.</p>
+            <div class="ai-card-tags">
+              <span class="ai-tag">OpenAI</span>
+              <span class="ai-tag">Claude</span>
+              <span class="ai-tag">LangChain</span>
+              <span class="ai-tag">RAG</span>
+            </div>
+          </div>
+
+          <div class="ai-card reveal reveal-delay-3">
+            <span class="ai-card-num">03</span>
+            <h3 class="ai-card-title">Intelligent Chatbots</h3>
+            <p class="ai-card-desc">Beyond simple FAQ bots. Conversational AI that understands context, learns from interactions, and provides genuine value to your customers around the clock.</p>
+            <div class="ai-card-tags">
+              <span class="ai-tag">Conversational AI</span>
+              <span class="ai-tag">NLP</span>
+              <span class="ai-tag">Custom Training</span>
+            </div>
+          </div>
+
+          <div class="ai-card reveal reveal-delay-4">
+            <span class="ai-card-num">04</span>
+            <h3 class="ai-card-title">Data Pipelines</h3>
+            <p class="ai-card-desc">Transform raw data into actionable insights. Automated ETL processes, real-time dashboards, and predictive analytics that power smarter decisions.</p>
+            <div class="ai-card-tags">
+              <span class="ai-tag">Python</span>
+              <span class="ai-tag">SQL</span>
+              <span class="ai-tag">Analytics</span>
+            </div>
+          </div>
+
+          <div class="ai-card reveal reveal-delay-5">
+            <span class="ai-card-num">05</span>
+            <h3 class="ai-card-title">Process Optimization</h3>
+            <p class="ai-card-desc">Identify bottlenecks and inefficiencies in your operations. I map, analyze, and redesign processes to maximize throughput and minimize waste.</p>
+            <div class="ai-card-tags">
+              <span class="ai-tag">Process Mapping</span>
+              <span class="ai-tag">Optimization</span>
+              <span class="ai-tag">Documentation</span>
+            </div>
+          </div>
+
+          <div class="ai-card reveal reveal-delay-6">
+            <span class="ai-card-num">06</span>
+            <h3 class="ai-card-title">Custom Development</h3>
+            <p class="ai-card-desc">When off-the-shelf won't cut it. Custom tools, scripts, and applications built precisely to your unique workflow requirements.</p>
+            <div class="ai-card-tags">
+              <span class="ai-tag">Node.js</span>
+              <span class="ai-tag">Python</span>
+              <span class="ai-tag">APIs</span>
+              <span class="ai-tag">Integrations</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="section projects-section" id="work">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-label">Selected Work</span>
+          <h2 class="section-title">Projects that made an <em>impact</em></h2>
+        </div>
+
+        <div class="projects-grid">
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="assets/imgs/project-1.jpg" alt="Instapage project preview" loading="lazy"/>
+            </div>
+            <div class="project-content">
+              <span class="project-category">Design System • SEO • Performance</span>
+              <h3 class="project-title">
+                <a href="https://instapage.com/" target="_blank" rel="noopener">Instapage</a>
+              </h3>
+              <p class="project-desc">
+                Led the creation of a comprehensive design system while optimizing SEO and blog performance. Implemented cutting-edge technical SEO strategies and performance enhancements that drove significant improvements in user engagement and organic traffic.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Design System</span>
+                <span class="project-tag">Technical SEO</span>
+                <span class="project-tag">Performance</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="assets/imgs/project-2.jpg" alt="ChatCraft project preview" loading="lazy"/>
+            </div>
+            <div class="project-content">
+              <span class="project-category">Landing Page • UI Design</span>
+              <h3 class="project-title">
+                <a href="https://chat-craft.netlify.app/" target="_blank" rel="noopener">ChatCraft</a>
+              </h3>
+              <p class="project-desc">
+                Designed and developed a high-converting one-page website showcasing ChatCraft's AI capabilities. Focused on creating an engaging, modern experience that effectively demonstrates the product's innovative features through thoughtful UX.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Landing Page</span>
+                <span class="project-tag">UI/UX</span>
+                <span class="project-tag">Conversion</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="assets/imgs/project-3.jpg" alt="OMDUK project preview" loading="lazy"/>
+            </div>
+            <div class="project-content">
+              <span class="project-category">Rebrand • Web Development</span>
+              <h3 class="project-title">
+                <a href="http://omduk.com" target="_blank" rel="noopener">OMDUK</a>
+              </h3>
+              <p class="project-desc">
+                Spearheaded a complete digital rebrand and website redevelopment. Delivered a user-friendly platform that showcases customer projects while strengthening brand identity and driving enhanced customer engagement.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Branding</span>
+                <span class="project-tag">Development</span>
+                <span class="project-tag">UX Strategy</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-image">
+              <img src="assets/imgs/project-4.jpg" alt="Circle of Style project preview" loading="lazy"/>
+            </div>
+            <div class="project-content">
+              <span class="project-category">Branding • UI Refresh</span>
+              <h3 class="project-title">
+                <a href="https://site.circlerfashion.com" target="_blank" rel="noopener">Circle of Style</a>
+              </h3>
+              <p class="project-desc">
+                Refreshed branding and user interface based on client vision. Translated creative concepts into a visually appealing, user-friendly interface that enhanced overall brand appeal while maintaining client-centric design principles.
+              </p>
+              <div class="project-tags">
+                <span class="project-tag">Brand Refresh</span>
+                <span class="project-tag">UI Design</span>
+                <span class="project-tag">Client Collab</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demos -->
+    <section class="demos-section">
+      <div class="container">
+        <div class="demos-grid">
+          <div class="demo-item reveal">
+            <img src="assets/imgs/demo-spa-salon.jpg" alt="Spa & Salon template" loading="lazy"/>
+            <div class="demo-overlay">
+              <span class="demo-label">Spa & Salon</span>
+            </div>
+          </div>
+          <div class="demo-item reveal reveal-delay-1">
+            <img src="assets/imgs/demo-lifestyle-blog.jpg" alt="Lifestyle Blog template" loading="lazy"/>
+            <div class="demo-overlay">
+              <span class="demo-label">Lifestyle Blog</span>
+            </div>
+          </div>
+          <div class="demo-item reveal reveal-delay-2">
+            <img src="assets/imgs/demo-consulting.jpg" alt="Consulting template" loading="lazy"/>
+            <div class="demo-overlay">
+              <span class="demo-label">Consulting</span>
+            </div>
+          </div>
+          <div class="demo-item reveal reveal-delay-3">
+            <img src="assets/imgs/demo-coming-soon.jpg" alt="Coming Soon template" loading="lazy"/>
+            <div class="demo-overlay">
+              <span class="demo-label">Coming Soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <h2>Let's build something <em>exceptional</em></h2>
+            <p>
+              Have a project in mind? I'm always interested in discussing new opportunities, ambitious ideas, and complex challenges worth solving.
+            </p>
+            <div class="contact-links">
+              <a href="mailto:hello@example.com" class="contact-link">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <path d="M3 5L10 11L17 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                Get in touch via email
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <rect x="2" y="2" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M6 9V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M6 6V6.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M10 14V10C10 9 11 8 12.5 8C14 8 14 9 14 10V14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Connect on LinkedIn
+              </a>
+            </div>
+          </div>
+
           <form
+            class="contact-form reveal reveal-delay-2"
             action="https://submit-form.com/T7CqMt15"
             data-botpoison-public-key="pk_a9c5ab22-a840-47d9-b03d-5e62cceba4a5"
-            class="md:grid md:grid-cols-3 md:gap-4"
           >
-            <input
-              class="block w-full py-2 px-4 my-3 border bg-neutral-300 text-zinc-900 placeholder-gray-700 border-blue-100 rounded-xl"
-              type="email"
-              id="email"
-              name="email"
-              placeholder="Email*"
-              required
-            />
-            <input
-              class="block w-full py-2 px-4 my-3 border bg-neutral-300 text-zinc-900 placeholder-gray-700 border-blue-100 rounded-xl"
-              type="text"
-              id="message"
-              name="message"
-              placeholder="Message*"
-              required
-            />
-            <button
-              id="submit-btn"
-              class="block w-full py-2 px-4 my-3 text-white border-2 border-zinc-800 bg-zinc-800 rounded-xl hover:bg-zinc-700 transition duration-200"
-              type="submit"
-            >
-              Send
+            <div class="form-group">
+              <input type="email" id="email" name="email" class="form-input" placeholder="Your email" required/>
+              <label for="email" class="form-label">Your email</label>
+            </div>
+            <div class="form-group">
+              <input type="text" id="name" name="name" class="form-input" placeholder="Your name"/>
+              <label for="name" class="form-label">Your name</label>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" class="form-input" placeholder="Your message" required></textarea>
+              <label for="message" class="form-label">Your message</label>
+            </div>
+            <button type="submit" id="submit-btn" class="btn btn-primary form-submit">
+              Send Message
+              <svg class="btn-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8H13M13 8L8 3M13 8L8 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </button>
           </form>
         </div>
       </div>
     </section>
-  </body>
 
-  <script defer src="./assets/js/main.js"></script>
-  <script src="https://unpkg.com/@botpoison/browser" async></script>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p class="footer-copy">&copy; 2025 Krzysztof Dąbrowski. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#expertise" class="footer-link">Expertise</a>
+          <a href="#work" class="footer-link">Work</a>
+          <a href="#contact" class="footer-link">Contact</a>
+        </div>
+      </div>
+    </footer>
+
+    <script defer src="./assets/js/main.js"></script>
+    <script src="https://unpkg.com/@botpoison/browser" async></script>
+
+    <script>
+      // Loader
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.getElementById('loader').classList.add('hidden');
+        }, 400);
+      });
+
+      // Navigation scroll effect
+      const nav = document.getElementById('nav');
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 80) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      });
+
+      // Scroll reveal
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+      // Smooth scroll
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        });
+      });
+
+      // Parallax hero
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-content');
+            if (hero && scrolled < window.innerHeight) {
+              hero.style.transform = `translateY(${scrolled * 0.25}px)`;
+              hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.6;
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    </script>
+  </body>
 </html>
